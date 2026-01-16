@@ -7,98 +7,99 @@
 <style>
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #fff7c2;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #fff4d6;
+    color: #555;
 }
 
 /* HEADER */
 header {
-    background: #ffe066;
-    padding: 20px;
     text-align: center;
+    padding: 30px 20px 10px;
 }
-header img {
-    max-width: 120px;
+.logo {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: #e6e6e6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    font-weight: bold;
+    color: #888;
 }
-header h1 {
-    margin: 10px 0 0;
+hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 25px auto;
+    width: 80%;
 }
 
-/* PRODUCTOS */
-.container {
+/* CART INFO */
+.cart-info {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.cart-info h2 {
+    margin: 0;
+}
+.cart-info p {
+    margin: 8px 0;
+    color: #777;
+}
+
+/* PRODUCTS */
+.products {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 20px;
-    padding: 20px;
-}
-.product {
-    background: white;
-    border-radius: 12px;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,.1);
-}
-.product img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-.price {
-    color: #2ecc71;
-    font-size: 22px;
-    font-weight: bold;
-}
-.btn {
-    display: block;
-    margin-top: 8px;
-    padding: 12px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    cursor: pointer;
-}
-.add {
-    background: #f1c40f;
-}
-.buy {
-    background: #3483fa;
-    color: white;
-}
-.whatsapp {
-    background: #25d366;
-    color: white;
+    gap: 25px;
+    padding: 0 40px 60px;
 }
 
-/* CARRITO */
-#cart {
-    position: fixed;
-    right: 0;
-    top: 0;
-    width: 280px;
-    height: 100%;
-    background: white;
-    box-shadow: -4px 0 10px rgba(0,0,0,.2);
-    padding: 15px;
-    overflow-y: auto;
+.card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
 }
-#cart h2 {
-    margin-top: 0;
+
+.card img {
+    width: 100%;
+    height: 140px;
+    background: #eee;
+    border-radius: 10px;
+    object-fit: cover;
 }
-.cart-item {
-    font-size: 14px;
-    margin-bottom: 8px;
+
+.card h3 {
+    margin: 15px 0 5px;
 }
-.total {
-    font-size: 18px;
+
+.price {
     font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.btn {
+    background: #7da9c8;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+}
+.btn:hover {
+    background: #6a97b6;
 }
 
 /* FOOTER */
 footer {
-    background: #ffe066;
     text-align: center;
-    padding: 15px;
+    padding: 20px;
+    color: #888;
 }
 </style>
 </head>
@@ -106,77 +107,87 @@ footer {
 <body>
 
 <header>
-<img src="logo.png" alt="Logo">
-<h1>Mochi Store</h1>
-<p>Compra fácil • Pago seguro • Envíos a todo Chile</p>
+    <!-- LOGO -->
+    <div class="logo">LOGO</div>
+    <hr>
 </header>
 
-<div class="container">
-
-<div class="product">
-<img src="https://via.placeholder.com/300">
-<h3>Auriculares Bluetooth</h3>
-<p class="price" data-price="15000">$15.000</p>
-<button class="btn add" onclick="addToCart('Auriculares Bluetooth',15000)">🛒 Agregar al carrito</button>
-<a class="btn buy" href="TU_LINK_DE_PAGO" target="_blank">💳 Comprar ahora</a>
-<a class="btn whatsapp" href="https://wa.me/TU_NUMERO_WHATSAPP?text=Hola%20quiero%20los%20auriculares">📲 WhatsApp</a>
+<div class="cart-info">
+    <h2>🛒 Shopping Cart</h2>
+    <p><span id="items">0</span> items • Total: $<span id="total">0</span></p>
 </div>
 
-<div class="product">
-<img src="https://via.placeholder.com/300">
-<h3>Smartwatch</h3>
-<p class="price" data-price="25000">$25.000</p>
-<button class="btn add" onclick="addToCart('Smartwatch',25000)">🛒 Agregar al carrito</button>
-<a class="btn buy" href="TU_LINK_DE_PAGO" target="_blank">💳 Comprar ahora</a>
-<a class="btn whatsapp" href="https://wa.me/TU_NUMERO_WHATSAPP?text=Hola%20quiero%20el%20smartwatch">📲 WhatsApp</a>
-</div>
+<div class="products">
 
-</div>
+    <!-- PRODUCTO 1 -->
+    <div class="card">
+        <img src="https://via.placeholder.com/300">
+        <h3>batidora portatil</h3>
+        <div class="price">$25.000</div>
+        <button class="btn" onclick="addToCart(25000)">Add to Cart</button>
+    </div>
 
-<!-- CARRITO -->
-<div id="cart">
-<h2>🛒 Carrito</h2>
-<div id="cartItems"></div>
-<p class="total">Total: $<span id="total">0</span></p>
+    <!-- PRODUCTO 2 -->
+    <div class="card">
+        <img src="https://via.placeholder.com/300">
+        <h3>Tiras Blanqueadoras De Dientes Purple Shine, Portátiles42p</h3>
+        <div class="price">$25.000</div>
+        <button class="btn" onclick="addToCart(25000)">Add to Cart</button>
+    </div>
 
-<a class="btn buy" href="TU_LINK_DE_PAGO" target="_blank">💳 Pagar carrito</a>
+    <!-- PRODUCTO 3 -->
+    <div class="card">
+        <img src="https://via.placeholder.com/300">
+        <h3>Cargador inalámbrico redondo ultrafino</h3>
+        <div class="price">$17.000</div>
+        <button class="btn" onclick="addToCart(17000)">Add to Cart</button>
+    </div>
 
-<a class="btn whatsapp" id="whatsLink" target="_blank">📲 Enviar pedido</a>
+    <!-- PRODUCTO 4 -->
+    <div class="card">
+        <img src="https://via.placeholder.com/300">
+        <h3>Power Bank 100kmAh</h3>
+        <div class="price">$20.000</div>
+        <button class="btn" onclick="addToCart(20000)">Add to Cart</button>
+    </div>
+
+    <!-- PRODUCTO 5 -->
+    <div class="card">
+        <img src="https://via.placeholder.com/300">
+        <h3>Mouse Inalámbrico</h3>
+        <div class="price">$12.000</div>
+        <button class="btn" onclick="addToCart(12000)">Add to Cart</button>
+    </div>
+
+    <!-- PRODUCTO 6 -->
+    <div class="card">
+        <img src="https://via.placeholder.com/300">
+        <h3>Teclado Compacto</h3>
+        <div class="price">$18.000</div>
+        <button class="btn" onclick="addToCart(18000)">Add to Cart</button>
+    </div>
+
 </div>
 
 <footer>
-<p>🔒 Pagos protegidos • 📦 Entregas rápidas</p>
+    <p>Compra segura • Envíos a todo Chile</p>
 </footer>
 
 <script>
-let cart = [];
+let items = 0;
 let total = 0;
 
-function addToCart(name, price) {
-    cart.push({name, price});
+function addToCart(price) {
+    items++;
     total += price;
-    renderCart();
-}
-
-function renderCart() {
-    const items = document.getElementById("cartItems");
-    items.innerHTML = "";
-    cart.forEach(p => {
-        items.innerHTML += `<div class="cart-item">${p.name} - $${p.price}</div>`;
-    });
-    document.getElementById("total").innerText = total;
-
-    let msg = "Hola, quiero comprar:%0A";
-    cart.forEach(p => msg += `- ${p.name} ($${p.price})%0A`);
-    msg += `Total: $${total}`;
-
-    document.getElementById("whatsLink").href =
-        `https://wa.me/TU_NUMERO_WHATSAPP?text=${msg}`;
+    document.getElementById("items").innerText = items;
+    document.getElementById("total").innerText = total.toLocaleString("es-CL");
 }
 </script>
 
 </body>
 </html>
+
 
 
 
